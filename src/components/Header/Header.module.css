@@ -33,10 +33,11 @@
   list-style: none;
 }
 
-.navActive {
+.nav_active {
   color:rgb(117, 10, 10);
+  background-color:rgb(117, 10, 10);
 }
 
-.nav li:hover {
+.nav li:active {
   color: rgb(117, 10, 10);
 }

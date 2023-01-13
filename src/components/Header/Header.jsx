@@ -13,7 +13,7 @@ export const Header = () => {
         {headerItems.map(headerItem => (
           <li key={headerItem.title}>
             <NavLink
-              className={({ isActive }) => (isActive ? css.navActive : null)}
+              className={({ isActive }) => (isActive ?  css.nav_active : null)}
               to={headerItem.to}
             >
               {headerItem.title}
