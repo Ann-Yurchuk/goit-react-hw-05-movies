@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { getFetchTrendingMovie } from '../api/api';
 import { TrendingList } from 'components/TrendingList/TrendingList';
 import { Container } from 'components/Container/Container';
-import  Loader  from 'components/Loader/Loader';
+import Loader from 'components/Loader/Loader';
+import NotFountView from 'components/NotFoundView/NotFoundView';
 
 const ERROR_MESSAGE = 'Щось пішло не так, перезавантажте сторінку...';
 
@@ -26,12 +27,15 @@ const Home = () => {
     return null;
   }
 
+  const isNotFound = !isLoading && !movies.length;
+  
   return (
     <>
       <Container>
         <h1>Trending today</h1>
         {isLoading && <Loader />}
         {error && <p>{error}</p>}
+        {isNotFound && <NotFountView/>}
         {movies && <TrendingList movies={movies} />}
       </Container>
     </>
