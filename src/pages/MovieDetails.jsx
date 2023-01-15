@@ -64,10 +64,10 @@ const MovieDetails = () => {
           <h3>Additional information</h3>
           <ul>
             <li>
-              <Link to="cast">Get to know the cast</Link>
+              <Link to="cast" state={{from: location.state?.from ?? "/"}}>Get to know the cast</Link>
             </li>
             <li>
-              <Link to="reviews">Go through the reviews</Link>
+              <Link to="reviews" state={{from: location.state?.from ?? "/"}}>Go through the reviews</Link>
             </li>
           </ul>
           <Suspense fallback={<Loader />}>

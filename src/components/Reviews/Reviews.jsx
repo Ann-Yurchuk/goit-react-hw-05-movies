@@ -25,7 +25,7 @@ export const Reviews = () => {
     return null;
   }
 
-  if (infoReviews.length === 0) {
+  if (infoReviews.length === 0 || infoReviews.length === '') {
     return `We don't have any reviews for this movie.`;
   }
 

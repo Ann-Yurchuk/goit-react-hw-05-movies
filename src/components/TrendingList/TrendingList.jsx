@@ -7,11 +7,10 @@ export const TrendingList = ({ movies }) => {
   return (
     <>
       <ul>
-        {movies.map(({ id, name, title }) => (
+        {movies.map(({ id, original_title, original_name }) => (
           <li key={id}>
             <Link to={`/movies/${id}`} state={{ from: location }}>
-              <span>{name}</span>
-              <span>{title}</span>
+              <span> {original_title ?? original_name}</span>
             </Link>
           </li>
         ))}
@@ -22,6 +21,6 @@ export const TrendingList = ({ movies }) => {
 
 TrendingList.propTypes = {
   id: PropTypes.string,
-  name: PropTypes.string,
-  title: PropTypes.string,
+  original_title: PropTypes.string,
+  original_name: PropTypes.string,
 };
