@@ -8,12 +8,12 @@ const headerItems = [
 
 export const Header = () => {
   return (
-      <nav className={css.nav}>
+    <nav className={css.nav}>
       <ul>
         {headerItems.map(headerItem => (
           <li key={headerItem.title}>
             <NavLink
-              className={({ isActive }) => (isActive ?  css.nav_active : null)}
+              className={({ isActive }) => (isActive ? css.nav_active : null)}
               to={headerItem.to}
             >
               {headerItem.title}
@@ -21,6 +21,6 @@ export const Header = () => {
           </li>
         ))}
       </ul>
-      </nav>
+    </nav>
   );
 };

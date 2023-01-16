@@ -3,6 +3,8 @@ import { fetchMovies } from '../api/api';
 import { MoviesSearch } from 'components/MoviesSearch/MoviesSearch';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { Container } from 'components/Container/Container';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ERROR_MESSAGE = 'Щось пішло не так, перезавантажте сторінку...';
 
@@ -11,17 +13,17 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const filterParam = searchParams.get('filter') ?? '';
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
 
   useEffect(() => {
-    if (!filterParam) {
+    if (!query) {
       return;
     }
     async function getMovies() {
       try {
         setIsLoading(true);
-        const movies = await fetchMovies(filterParam);
+        const movies = await fetchMovies(query);
         setMovies(movies.results);
       } catch {
         setError(ERROR_MESSAGE);
@@ -30,23 +32,24 @@ const Movies = () => {
       }
     }
     getMovies();
-  }, [filterParam]);
+  }, [query]);
 
-  const changeFilter = value => {
-    setSearchParams(value !== '' ? { filter: value } : {});
-  };
-
-  const formSubmit = data => {
-    console.log(data);
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (query.trim() === '') {
+      return toast.error(
+        'Sorry, there are no movies matching your search query. Please try again.',
+        { theme: 'colored' }
+      );
+    }
   };
 
   return (
     <Container>
       <MoviesSearch
-        onSubmit={formSubmit}
-        value={filterParam}
-        onChange={changeFilter}
+        query={query}
         isLoading={isLoading}
+        onSubmit={handleSubmit}
       />
       {error && <p>{error}</p>}
       {movies.length > 0 && (
@@ -60,6 +63,7 @@ const Movies = () => {
           ))}
         </ul>
       )}
+      <ToastContainer />
     </Container>
   );
 };

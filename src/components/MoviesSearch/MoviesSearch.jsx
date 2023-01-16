@@ -1,27 +1,28 @@
-import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Input, Form, Button, ButtonLabel } from './MoviesSearch.styled';
 import PropTypes from 'prop-types';
+import { useDebounce } from 'hooks/useDebounce';
 
-export const MoviesSearch = ({ onChange, onSubmit }) => {
-  const [value, setValue] = useState('');
+const DEBOUNCE_TIME = 250;
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (value.trim() === '') {
-      return toast.error(
-        'Sorry, there are no movies matching your search. Please try again.',
-        { theme: 'colored' }
-      );
+export const MoviesSearch = ({ query }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(query);
+  const debounceSearchQuery = useDebounce(searchQuery, DEBOUNCE_TIME);
+
+  useEffect(() => {
+    if (!debounceSearchQuery) {
+      searchParams.delete('query');
+      setSearchParams(searchParams);
+      return;
     }
-    onSubmit(value);
-    setValue('');
-  };
+    setSearchParams({ query: debounceSearchQuery });
+  }, [debounceSearchQuery, setSearchParams, searchParams]);
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <Button type="submit">
           <ButtonLabel>Search</ButtonLabel>
         </Button>
@@ -31,18 +32,17 @@ export const MoviesSearch = ({ onChange, onSubmit }) => {
           // autocomplete="off"
           // autoFocus
           placeholder="Search movies"
-          value={value}
           name="search"
-          onChange={e => onChange(e.target.value)}
+          value={searchQuery}
+          onChange={e => {
+            setSearchQuery(e.target.value);
+          }}
         />
       </Form>
-      <ToastContainer autoClose={3000} />
     </>
   );
 };
 
 MoviesSearch.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
 };

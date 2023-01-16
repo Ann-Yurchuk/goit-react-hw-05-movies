@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { getFetchMovieById } from '../api/api';
 import { Suspense } from 'react';
-import  Loader  from 'components/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 import { Container } from 'components/Container/Container';
 import loding from 'img/loding.jpg';
 
@@ -31,19 +31,23 @@ const MovieDetails = () => {
   }
 
   const backLinkHref = location.state?.from ?? '/movies';
+  const backLink = location.state?.from ?? '/';
   const getYearDate = () => new Date(movie.release_date).getFullYear();
 
   return (
     <>
       <Container>
         <Link to={backLinkHref}>Back to movies</Link>
-        {loading && <Loader/>}
+        {loading && <Loader />}
         {error && <div>{error}</div>}
         {movie && (
           <div>
             <img
-              src={movie.poster_path ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
-            : loding}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
+                  : loding
+              }
               alt={movie.title}
             />
             <h2>{movie.title}</h2>
@@ -64,10 +68,14 @@ const MovieDetails = () => {
           <h3>Additional information</h3>
           <ul>
             <li>
-              <Link to="cast" state={{from: location.state?.from ?? "/"}}>Get to know the cast</Link>
+              <Link to="cast" state={{ from: backLink }}>
+                Get to know the cast
+              </Link>
             </li>
             <li>
-              <Link to="reviews" state={{from: location.state?.from ?? "/"}}>Go through the reviews</Link>
+              <Link to="reviews" state={{ from: backLink }}>
+                Go through the reviews
+              </Link>
             </li>
           </ul>
           <Suspense fallback={<Loader />}>
