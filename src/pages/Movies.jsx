@@ -3,8 +3,6 @@ import { fetchMovies } from '../api/api';
 import { MoviesSearch } from 'components/MoviesSearch/MoviesSearch';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { Container } from 'components/Container/Container';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const ERROR_MESSAGE = 'Щось пішло не так, перезавантажте сторінку...';
 
@@ -13,7 +11,7 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
   useEffect(() => {
@@ -34,23 +32,12 @@ const Movies = () => {
     getMovies();
   }, [query]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (query.trim() === '') {
-      return toast.error(
-        'Sorry, there are no movies matching your search query. Please try again.',
-        { theme: 'colored' }
-      );
-    }
-  };
-
+  function onSubmit(value) {
+    setSearchParams({ query: `${value}` });
+  }
   return (
     <Container>
-      <MoviesSearch
-        query={query}
-        isLoading={isLoading}
-        onSubmit={handleSubmit}
-      />
+      <MoviesSearch query={query} isLoading={isLoading} onSearch={onSubmit} />
       {error && <p>{error}</p>}
       {movies.length > 0 && (
         <ul>
@@ -63,7 +50,6 @@ const Movies = () => {
           ))}
         </ul>
       )}
-      <ToastContainer />
     </Container>
   );
 };
