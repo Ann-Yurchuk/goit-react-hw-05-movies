@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFetchMovieCredits } from 'api/api';
-import { CastList, CastItem} from './Cast.styled';
+import { CastList, CastItem } from './Cast.styled';
 import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
@@ -34,6 +34,10 @@ export const Cast = () => {
     return null;
   }
 
+  if (credits.length === 0 || credits.length === '') {
+    return `We don't have any cast for this movie.`;
+  }
+
   return (
     <>
       {loading && <Loader />}
@@ -44,8 +48,11 @@ export const Cast = () => {
           return (
             <CastItem key={id}>
               <img
-                src={profile_path ? `https://image.tmdb.org/t/p/w300${profile_path}`
-              : actor }
+                src={
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w300${profile_path}`
+                    : actor
+                }
                 alt={`${name} portrait`}
               />
               <div>
