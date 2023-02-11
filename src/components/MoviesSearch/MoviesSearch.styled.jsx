@@ -3,21 +3,25 @@ import styled from 'styled-components';
 export const Form = styled.form`
   display: flex;
   flex-direction: row-reverse;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 600px;
-  background-color: #fff;
-  border-radius: 3px;
-  border: 1px solid black;
+  background-color: #08b0ed;
+  border: none;
+  border-radius: 10px;
+  padding: 2px;
+  margin-top: 20px;
+  gap: 10px;
 `;
 
 export const Button = styled.button`
   display: inline-block;
   width: 60px;
   height: 30px;
-  border: 0;
-  border-radius: 3px;
-  margin: 4px;
+  border: none;
+  border-radius: 7px;
+  padding: 5px;
+  margin: 10px;
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
@@ -33,10 +37,16 @@ export const Button = styled.button`
 export const ButtonLabel = styled.span`
   width: 15px;
   height: 15px;
-  padding: 2px;
   color: black;
   font-size: 14px;
   font-style: inherit;
+`;
+
+export const Label = styled.label`
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-family: Open Sans, Arial, sans-serif;
+  text-shadow: 1px 1px 1px #232323;
 `;
 
 export const Input = styled.input`
@@ -44,10 +54,11 @@ export const Input = styled.input`
   width: 100%;
   font: inherit;
   font-size: 20px;
+  border-radius: 10px;
   border: none;
   outline: none;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding: 5px;
+
   &::placeholder {
     font: inherit;
     font-size: 18px;

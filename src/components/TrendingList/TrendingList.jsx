@@ -1,21 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import loding from 'img/loading.jpg';
+import { List, Item, ItemImg, Title, LinkNav } from './TrendingList.styled';
+import { Container } from 'components/Container/Container';
 
 export const TrendingList = ({ movies }) => {
   const location = useLocation();
   return (
-    <>
-      <ul>
-        {movies.map(({ id, original_title, original_name }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`} state={{ from: location }}>
-              <span> {original_title ?? original_name}</span>
-            </Link>
-          </li>
+    <Container>
+      <List>
+        {movies.map(({ id, original_title, original_name, poster_path }) => (
+          <Item key={id}>
+            <ItemImg
+              src={
+                poster_path
+                  ? `https://image.tmdb.org/t/p/w200/${poster_path}`
+                  : loding
+              }
+              alt={original_title ?? original_name}
+            />
+            <LinkNav to={`/movies/${id}`} state={{ from: location }}>
+              <Title> {original_title ?? original_name}</Title>
+            </LinkNav>
+          </Item>
         ))}
-      </ul>
-    </>
+      </List>
+    </Container>
   );
 };
 

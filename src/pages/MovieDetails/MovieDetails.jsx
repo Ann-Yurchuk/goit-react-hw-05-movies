@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { getFetchMovieById } from '../api/api';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
+import { getFetchMovieById } from '../../api/api';
 import { Suspense } from 'react';
 import Loader from 'components/Loader/Loader';
 import { Container } from 'components/Container/Container';
-import loding from 'img/loding.jpg';
+import loding from 'img/loading.jpg';
+import { List, ListImg, InfoList, LinkNav } from './MovieDetails.styled';
 
 const ERROR_MESSAGE = 'Щось пішло не так, перезавантажте сторінку...';
 
@@ -37,12 +38,12 @@ const MovieDetails = () => {
   return (
     <>
       <Container>
-        <Link to={backLinkHref}>Back to movies</Link>
+        <LinkNav to={backLinkHref}>Back to movies</LinkNav>
         {loading && <Loader />}
         {error && <div>{error}</div>}
         {movie && (
-          <div>
-            <img
+          <List>
+            <ListImg
               src={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
@@ -50,32 +51,34 @@ const MovieDetails = () => {
               }
               alt={movie.title}
             />
-            <h2>{movie.title}</h2>
-            <p>
-              <span>({getYearDate()})</span>
-            </p>
-            <p>User Score: {movie.popularity}</p>
-            <div>
-              <h3>Overview</h3>
+            <InfoList>
+              <h2>{movie.title}</h2>
+
+              <p>
+                <span>({getYearDate()})</span>
+              </p>
+              <p>User Score: {movie.popularity}</p>
+
+              <h3>Overview:</h3>
               <p>{movie.overview}</p>
-              <h3>Gernes</h3>
+              <h3>Gernes:</h3>
               <p>{movie.genres.map(genre => `${genre.name} `)}</p>
-            </div>
-          </div>
+            </InfoList>
+          </List>
         )}
         <hr />
         <div>
           <h3>Additional information</h3>
           <ul>
             <li>
-              <Link to="cast" state={{ from: backLink }}>
+              <LinkNav to="cast" state={{ from: backLink }}>
                 Get to know the cast
-              </Link>
+              </LinkNav>
             </li>
             <li>
-              <Link to="reviews" state={{ from: backLink }}>
+              <LinkNav to="reviews" state={{ from: backLink }}>
                 Go through the reviews
-              </Link>
+              </LinkNav>
             </li>
           </ul>
           <Suspense fallback={<Loader />}>

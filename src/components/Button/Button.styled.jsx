@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const ButtonStyle = styled.button`
   padding: 8px 16px;
-  border-radius: 2px;
-  background-color: rgb(223, 131, 131);
+  border-radius: 3px;
+  background-color: #08b0ed;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   display: inline-block;
@@ -16,7 +16,7 @@ export const ButtonStyle = styled.button`
   line-height: 24px;
   font-style: normal;
   font-weight: 400;
-  width: 80px;
+  width: 120px;
   height: 40px;
   margin: 10px;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),

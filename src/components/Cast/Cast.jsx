@@ -1,7 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFetchMovieCredits } from 'api/api';
-import { CastList, CastItem } from './Cast.styled';
+import {
+  CastList,
+  CastItem,
+  CastImg,
+  CastInfo,
+  Title,
+  Info,
+} from './Cast.styled';
 import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
@@ -47,18 +54,18 @@ export const Cast = () => {
         {credits.map(({ id, profile_path, name, character }) => {
           return (
             <CastItem key={id}>
-              <img
+              <CastImg
                 src={
                   profile_path
-                    ? `https://image.tmdb.org/t/p/w300${profile_path}`
+                    ? `https://image.tmdb.org/t/p/w200${profile_path}`
                     : actor
                 }
                 alt={`${name} portrait`}
               />
-              <div>
-                <h3>{name}</h3>
-                <p>Character: {character}</p>
-              </div>
+              <CastInfo>
+                <Title>{name}</Title>
+                <Info>Character: {character}</Info>
+              </CastInfo>
             </CastItem>
           );
         })}

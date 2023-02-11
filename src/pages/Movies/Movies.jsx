@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { fetchMovies } from '../api/api';
+import { fetchMovies } from '../../api/api';
 import { MoviesSearch } from 'components/MoviesSearch/MoviesSearch';
-import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { Container } from 'components/Container/Container';
+import { List, Item, LinkNav, ItemImg } from './Movies.styled';
+import loding from 'img/loading.jpg';
 
 const ERROR_MESSAGE = 'Щось пішло не так, перезавантажте сторінку...';
 
@@ -40,15 +42,23 @@ const Movies = () => {
       <MoviesSearch query={query} isLoading={isLoading} onSearch={onSubmit} />
       {error && <p>{error}</p>}
       {movies.length > 0 && (
-        <ul>
+        <List>
           {movies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`${movie.id}`} state={{ from: location }}>
+            <Item key={movie.id}>
+              <ItemImg
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
+                    : loding
+                }
+                alt={movie.original_title ?? movie.original_name}
+              />
+              <LinkNav to={`${movie.id}`} state={{ from: location }}>
                 {movie.title}
-              </Link>
-            </li>
+              </LinkNav>
+            </Item>
           ))}
-        </ul>
+        </List>
       )}
     </Container>
   );

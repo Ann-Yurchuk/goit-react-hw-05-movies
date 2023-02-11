@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Input, Form, Button, ButtonLabel } from './MoviesSearch.styled';
+import { Input, Form, Label, Button, ButtonLabel } from './MoviesSearch.styled';
 import PropTypes from 'prop-types';
 import { useDebounce } from 'hooks/useDebounce';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Container } from 'components/Container/Container';
 
 const DEBOUNCE_TIME = 250;
 
@@ -35,26 +36,27 @@ export const MoviesSearch = ({ query, onSearch }) => {
   };
 
   return (
-    <>
+    <Container>
       <Form onSubmit={handleSubmit}>
         <Button type="submit">
           <ButtonLabel>Search</ButtonLabel>
         </Button>
-
-        <Input
-          type="text"
-          // autocomplete="off"
-          // autoFocus
-          placeholder="Search movies"
-          name="search"
-          value={searchQuery}
-          onChange={e => {
-            setSearchQuery(e.target.value);
-          }}
-        />
+        <Label>
+          <Input
+            type="text"
+            // autocomplete="off"
+            // autoFocus
+            placeholder="Search movies"
+            name="search"
+            value={searchQuery}
+            onChange={e => {
+              setSearchQuery(e.target.value);
+            }}
+          />
+        </Label>
       </Form>
       <ToastContainer />
-    </>
+    </Container>
   );
 };
 
