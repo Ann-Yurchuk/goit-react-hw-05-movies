@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFetchMovieReviews } from 'api/api';
 import { Button } from 'components/Button/Button';
+import { List, Item } from './Reviews.styled';
 import PropTypes from 'prop-types';
 
 export const Reviews = () => {
@@ -33,16 +34,16 @@ export const Reviews = () => {
     <>
       <Button />
       {error && <div>{error}</div>}
-      <ul>
+      <List>
         {infoReviews.map(({ id, author, content }) => {
           return (
-            <li key={id}>
+            <Item key={id}>
               <h3>Author: {author}</h3>
               <p>{content}</p>
-            </li>
+            </Item>
           );
         })}
-      </ul>
+      </List>
     </>
   );
 };

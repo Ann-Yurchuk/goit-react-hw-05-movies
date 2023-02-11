@@ -31,11 +31,11 @@ export const Title = styled.span`
   line-height: 1.2;
   padding: 5px;
   font-family: 'Helvetica Neue';
-  color: #064258;
+  color: var(--secondary-accent-color);
 `;
 export const LinkNav = styled(NavLink)`
   padding: 2px 4px;
   text-decoration: none;
-  color: #08b0ed;
+  color: var(--accent-color);
   font-weight: 800;
 `;

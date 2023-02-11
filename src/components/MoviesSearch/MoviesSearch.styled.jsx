@@ -6,7 +6,7 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: #08b0ed;
+  background-color: var(--accent-color);
   border: none;
   border-radius: 10px;
   padding: 2px;
@@ -25,6 +25,7 @@ export const Button = styled.button`
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: var(--body-bcg-color);
   opacity: 0.6;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -43,7 +44,7 @@ export const ButtonLabel = styled.span`
 `;
 
 export const Label = styled.label`
-  color: #ffffff;
+  color: var(--body-bcg-color);
   font-size: 0.8rem;
   font-family: Open Sans, Arial, sans-serif;
   text-shadow: 1px 1px 1px #232323;
@@ -58,7 +59,7 @@ export const Input = styled.input`
   border: none;
   outline: none;
   padding: 5px;
-
+  background-color: var(--body-bcg-color);
   &::placeholder {
     font: inherit;
     font-size: 18px;

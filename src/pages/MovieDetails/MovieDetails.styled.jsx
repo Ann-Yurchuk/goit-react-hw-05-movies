@@ -7,6 +7,7 @@ export const List = styled.div`
   border-radius: 20px;
   padding: 10px;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  background-color: var(--secondary-accent-color);
 `;
 
 export const InfoList = styled.div`
@@ -15,6 +16,7 @@ export const InfoList = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   padding: 10px;
+  color: var(--accent-color);
 `;
 export const ListImg = styled.img`
   border-radius: 3px;
@@ -24,8 +26,8 @@ export const ListImg = styled.img`
 
 export const LinkNav = styled(NavLink)`
   text-decoration: none;
-  color: #0b0583;
+  color: var(--secondary-accent-color);
   &.active {
-    color: #08b0ed;
+    color: var(--accent-color);
   }
 `;

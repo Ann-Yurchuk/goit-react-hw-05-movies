@@ -5,10 +5,10 @@ export const Link = styled(NavLink)`
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none;
-  color: #0b0583;
+  color: var(--secondary-accent-color);
   font-weight: 800;
   &.active {
-    color: #08b0ed;
+    color: var(--accent-color);
   }
 `;
 
