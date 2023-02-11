@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const List = styled.ul`
   display: grid;
@@ -33,6 +33,9 @@ export const Title = styled.span`
   font-family: 'Helvetica Neue';
   color: #064258;
 `;
-export const LinkNav = styled(Link)`
+export const LinkNav = styled(NavLink)`
+  padding: 2px 4px;
   text-decoration: none;
+  color: #08b0ed;
+  font-weight: 800;
 `;

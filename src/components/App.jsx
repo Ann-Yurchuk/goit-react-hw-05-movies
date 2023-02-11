@@ -4,7 +4,7 @@ import { Container } from './Container/Container';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
-import  NotFoundView  from './NotFoundView/NotFoundView';
+import NotFoundView from './NotFoundView/NotFoundView';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies/Movies'));
@@ -21,7 +21,7 @@ export const App = () => {
             <Route path="/movies/:movieId/cast" element={<Cast />} />
             <Route path="/movies/:movieId/reviews" element={<Reviews />} />
           </Route>
-          <Route path="*" element={<NotFoundView/>} />
+          <Route path="*" element={<NotFoundView />} />
         </Route>
       </Routes>
     </Container>

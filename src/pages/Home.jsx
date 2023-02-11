@@ -28,14 +28,14 @@ const Home = () => {
   }
 
   const isNotFound = !isLoading && !movies.length;
-  
+
   return (
     <>
       <Container>
         <h1>Trending today</h1>
         {isLoading && <Loader />}
         {error && <p>{error}</p>}
-        {isNotFound && <NotFountView/>}
+        {isNotFound && <NotFountView />}
         {movies && <TrendingList movies={movies} />}
       </Container>
     </>

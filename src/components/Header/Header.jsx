@@ -1,19 +1,15 @@
 import { Link, List, Nav } from './Header.styled';
 
-const headerItems = [
-  { to: '/', title: 'Home' },
-  { to: '/movies', title: 'Movies' },
-];
-
 export const Header = () => {
   return (
     <Nav>
       <List>
-        {headerItems.map(headerItem => (
-          <li>
-            <Link to={headerItem.to}>{headerItem.title}</Link>
-          </li>
-        ))}
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/movies">Movies</Link>
+        </li>
       </List>
     </Nav>
   );
