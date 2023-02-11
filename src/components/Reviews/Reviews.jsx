@@ -37,7 +37,7 @@ export const Reviews = () => {
         {infoReviews.map(({ id, author, content }) => {
           return (
             <li key={id}>
-              <p>Author: {author}</p>
+              <h3>Author: {author}</h3>
               <p>{content}</p>
             </li>
           );
